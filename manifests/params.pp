@@ -2,11 +2,11 @@
 # should be considered to be constant
 class horizon::params {
 
-  $logdir = '/var/log/horizon'
+  $logdir       = '/var/log/horizon'
+  $http_service = 'httpd'
 
   case $::osfamily {
     'RedHat': {
-      $http_service                = 'httpd'
       $http_modwsgi                = 'mod_wsgi'
       $package_name                = 'openstack-dashboard'
       $config_file                 = '/etc/openstack-dashboard/local_settings'
@@ -17,7 +17,6 @@ class horizon::params {
       $apache_group                = 'apache'
     }
     'Debian': {
-      $http_service                = 'apache2'
       $config_file                 = '/etc/openstack-dashboard/local_settings.py'
       $httpd_config_file           = '/etc/apache2/conf.d/openstack-dashboard.conf'
       $httpd_listen_config_file    = '/etc/apache2/ports.conf'
